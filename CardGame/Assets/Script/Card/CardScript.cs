@@ -6,6 +6,10 @@ public class CardScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 {
     private RectTransform rectTransform;
     private Canvas canvas;
+    private CanvasGroup canvasGroup;
+    private Vector2 originalPosition;
+
+    private CardManager cardManager;
 
     [SerializeField,Header("カードデータ")]
     private CardDataBase cardData;
@@ -23,15 +27,25 @@ public class CardScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     {
         rectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
+        canvasGroup = GetComponentInParent<CanvasGroup>();
 
         cardName.text = cardData.CardName;
         cardText.text = cardData.CardText;
         cardCost.text = cardData.cost.ToString();
+
+        cardManager = GameObject.FindObjectOfType<CardManager>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         // ドラッグ開始時の処理が必要ならここに記述
+
+        //初期位置保存
+        originalPosition = rectTransform.anchoredPosition;
+
+        // 他のUIとの衝突を無視（半透明にする）
+        canvasGroup.alpha = 0.6f;
+        canvasGroup.blocksRaycasts = false;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -44,7 +58,43 @@ public class CardScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     }
 
     public void OnEndDrag(PointerEventData eventData)
-    {
+    {       
         // ドラッグ終了時の処理が必要ならここに記述
+        // ドロップエリア判定
+        if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("DropArea"))
+        {
+            Debug.Log("ドロップ成功！指定エリアにドロップされました。");
+            OnDropSuccess();
+        }
+        else
+        {
+            Debug.Log("ドロップ失敗。元の位置に戻します。");
+            rectTransform.anchoredPosition = originalPosition;
+        }
+
+        // 元の透明度に戻し、レイキャストを有効化
+        canvasGroup.alpha = 1.0f;
+        canvasGroup.blocksRaycasts = true;
+
+        cardManager.AddToGraveyard(this.cardData);
+        Destroy(this.gameObject);
+    }
+
+    private void OnDropSuccess()
+    {
+        // ドロップ成功時の処理
+        Debug.Log("ドロップ成功の処理を実行中...");
+        cardManager.GenerateCards(2);
+
+    }
+
+    public void SetCardData(CardDataBase data)
+    {
+        cardData = data;
+
+        // UIを更新
+        cardName.text = cardData.CardName;
+        cardText.text = cardData.CardText;
+        cardCost.text = cardData.cost.ToString();
     }
 }
