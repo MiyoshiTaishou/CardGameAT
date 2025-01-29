@@ -20,6 +20,17 @@ public class CharStatus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(CurrentHP <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void Damage(int _damage)
+    {
+        if (0 < CurrentHP)
+        {
+            CurrentHP -= _damage;
+        }
     }
 }
