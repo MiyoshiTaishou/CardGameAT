@@ -27,4 +27,7 @@ public class CardDataBase : ScriptableObject
 
     [SerializeField, Header("カードの効果の値")]
     public int cardPoint;
+
+    [SerializeField, Header("プレイ時のSE")]
+    public AudioClip cardSE;
 }
