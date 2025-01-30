@@ -10,6 +10,7 @@ public abstract class CardScript : MonoBehaviour, IBeginDragHandler, IDragHandle
     private Vector2 originalPosition;
 
     protected CardManager cardManager;
+    protected AudioSource audioSource;
 
     [SerializeField, Header("カードデータ")]
     protected CardDataBase cardData;
@@ -34,6 +35,7 @@ public abstract class CardScript : MonoBehaviour, IBeginDragHandler, IDragHandle
         cardCost.text = cardData.cost.ToString();
 
         cardManager = GameObject.FindObjectOfType<CardManager>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)

@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackCardScript : CardScript
+public class DefCardScript : CardScript
 {
     protected override void OnDropSuccess(GameObject dropTarget)
     {
-        Debug.Log("攻撃カードの効果発動！対象にダメージを与える");
+        Debug.Log("防御カードの効果発動！対象にダメージを与える");
         dropTarget.GetComponent<CharStatus>().Damage(this.cardData.cardPoint);
 
         // 一時的なオブジェクトを作成し、SE を再生
@@ -21,5 +21,4 @@ public class AttackCardScript : CardScript
         // カードを即座に削除
         Destroy(this.gameObject);
     }
-
 }

@@ -17,3 +17,4 @@ MonoBehaviour:
   cost: 1
   CardText: "\u3053\u308C\u306F\u521D\u7D1A\u9B54\u6CD5\u3060"
   cardPoint: 5
+  cardSE: {fileID: 8300000, guid: 08c2957c6c5a79845a067bd325e5f1b0, type: 3}
