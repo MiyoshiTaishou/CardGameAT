@@ -1154,6 +1154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myData: {fileID: 11400000, guid: c84814650e9b2d2499c68302e3de0efd, type: 2}
+  mySlider: {fileID: 1144437480}
 --- !u!1 &1920110307
 GameObject:
   m_ObjectHideFlags: 0
@@ -1237,12 +1238,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1920110307}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8cff647ef1ba733429a30560148d1f7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myData: {fileID: 11400000, guid: 08e32685d466c8e48894c413b291002b, type: 2}
+  mySlider: {fileID: 0}
 --- !u!1 &1982241582
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,9 +1,13 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharStatus : MonoBehaviour
 {
     [SerializeField]
     CharData myData;
+
+    [SerializeField,Header("HPスライダー")]
+    Slider mySlider;
 
     int CurrentHP;
     int CurrentMP;
@@ -24,6 +28,8 @@ public class CharStatus : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        mySlider.value = (float)CurrentHP / myData.MaxHP;
     }
 
     public void Damage(int _damage)
