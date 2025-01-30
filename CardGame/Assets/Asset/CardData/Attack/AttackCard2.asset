@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2764ef5d65c801c41ac2969a44fc7a4b, type: 3}
-  m_Name: NewCharData
+  m_Script: {fileID: 11500000, guid: 1c6680ac3e200204f9d79120d3fb1fa4, type: 3}
+  m_Name: AttackCard2
   m_EditorClassIdentifier: 
-  Name: "\u304A\u3058\u3055\u3093"
-  MaxHP: 1
-  MaxMP: 3
-  DownPoint: 3
+  type: 0
+  CardName: "\u521D\u7D1A\u9B54\u6CD52"
+  cost: 3
+  CardText: "\u3053\u308C\u306F\u521D\u7D1A\u9B54\u6CD52\u3060"
+  cardPoint: 10
