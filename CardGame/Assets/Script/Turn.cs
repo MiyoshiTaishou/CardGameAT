@@ -3,7 +3,9 @@ using UnityEngine;
 public class Turn : SingletonMonoBehaviour<Turn>
 {
     public bool isPlayerTurn = true;
-    int currentTurnNum = 1;
+    public int currentTurnNum = 1;
+
+
     // Start is called before the first frame update
     void Start()
     {
