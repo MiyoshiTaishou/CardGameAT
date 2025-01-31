@@ -13,12 +13,15 @@ public class CharStatus : MonoBehaviour
     int CurrentMP;
     int DownPoint;
 
+    KisuuPassive Kisuu;
+
     // Start is called before the first frame update
     void Start()
     {
         CurrentHP = myData.MaxHP;
         CurrentMP = myData.MaxMP;
         DownPoint = myData.DownPoint;
+        Kisuu=GameObject.FindObjectOfType<KisuuPassive>().GetComponent<KisuuPassive>();
     }
 
     // Update is called once per frame
@@ -34,6 +37,15 @@ public class CharStatus : MonoBehaviour
 
     public void Damage(int _damage)
     {
+        if (Kisuu !=null) 
+        {
+            float daada = _damage;
+            if (Kisuu.Kisuu) 
+            {
+                daada *= Kisuu.conf;
+                _damage = (int)daada;
+            }
+        }
         if (0 < CurrentHP)
         {
             CurrentHP -= _damage;
