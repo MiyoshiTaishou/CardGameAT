@@ -15,13 +15,13 @@ public class Turn : SingletonMonoBehaviour<Turn>
     {
         
     }
-    void GoTurnPlayer()
+    public void GoTurnPlayer()
     {
         isPlayerTurn= true;
         currentTurnNum++;
     }
 
-    void GoTurnEnemy()
+    public void GoTurnEnemy()
     {
         isPlayerTurn = false;
     }

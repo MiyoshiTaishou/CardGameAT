@@ -10,6 +10,7 @@ public abstract class CardScript : MonoBehaviour, IBeginDragHandler, IDragHandle
     private Vector2 originalPosition;
 
     protected CardManager cardManager;
+    protected Turn turnManager;
     protected AudioSource audioSource;
 
     [SerializeField, Header("カードデータ")]
@@ -35,42 +36,51 @@ public abstract class CardScript : MonoBehaviour, IBeginDragHandler, IDragHandle
         cardCost.text = cardData.cost.ToString();
 
         cardManager = GameObject.FindObjectOfType<CardManager>();
+        turnManager = GameObject.FindObjectOfType<Turn>();
         audioSource = GetComponent<AudioSource>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        originalPosition = rectTransform.anchoredPosition;
-        canvasGroup.alpha = 0.6f;
-        canvasGroup.blocksRaycasts = false;
+        if (turnManager.isPlayerTurn)
+        {
+            originalPosition = rectTransform.anchoredPosition;
+            canvasGroup.alpha = 0.6f;
+            canvasGroup.blocksRaycasts = false;
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (canvas != null)
+        if (turnManager.isPlayerTurn)
         {
-            rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+            if (canvas != null)
+            {
+                rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+            }
         }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("DropArea"))
+        if (turnManager.isPlayerTurn)
         {
-            Debug.Log("ドロップ成功！");
-            OnDropSuccess(eventData.pointerEnter);
-        }
-        else
-        {
-            Debug.Log("ドロップ失敗。元の位置に戻します。");
-            rectTransform.anchoredPosition = originalPosition;
-        }
+            if (eventData.pointerEnter != null && eventData.pointerEnter.CompareTag("DropArea"))
+            {
+                Debug.Log("ドロップ成功！");
+                OnDropSuccess(eventData.pointerEnter);
+                cardManager.AddToGraveyard(this.cardData);
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                Debug.Log("ドロップ失敗。元の位置に戻します。");
+                rectTransform.anchoredPosition = originalPosition;
+            }
 
-        canvasGroup.alpha = 1.0f;
-        canvasGroup.blocksRaycasts = true;
-
-        cardManager.AddToGraveyard(this.cardData);
-        Destroy(this.gameObject);
+            canvasGroup.alpha = 1.0f;
+            canvasGroup.blocksRaycasts = true;           
+        }
     }
 
     // 派生クラスで処理を変更できるようにする
