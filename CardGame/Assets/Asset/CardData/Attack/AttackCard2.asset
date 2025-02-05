@@ -17,3 +17,5 @@ MonoBehaviour:
   cost: 3
   CardText: "\u3053\u308C\u306F\u521D\u7D1A\u9B54\u6CD52\u3060"
   cardPoint: 10
+  cardSE: {fileID: 8300000, guid: 08c2957c6c5a79845a067bd325e5f1b0, type: 3}
+  effectPrefab: {fileID: 5768361833539866775, guid: 4e7c4605e4885214390eb1dcdcbdf6fa, type: 3}
