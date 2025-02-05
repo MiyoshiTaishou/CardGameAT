@@ -269,6 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayerTurn: 1
+  currentTurnNum: 1
 --- !u!1 &345780637
 GameObject:
   m_ObjectHideFlags: 0

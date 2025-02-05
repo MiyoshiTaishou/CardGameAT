@@ -30,4 +30,7 @@ public class CardDataBase : ScriptableObject
 
     [SerializeField, Header("プレイ時のSE")]
     public AudioClip cardSE;
+
+    [SerializeField, Header("エフェクトプレハブ")] // ここを追加
+    public GameObject effectPrefab;
 }
