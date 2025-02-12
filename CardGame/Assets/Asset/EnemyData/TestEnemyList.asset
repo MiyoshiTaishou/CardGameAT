@@ -17,8 +17,8 @@ MonoBehaviour:
     actionName: "\u884C\u52D5\u540D"
     actionValue: 5
   - actionType: 0
-    actionName: 
+    actionName: "\u884C\u52D5\u540D1"
     actionValue: 0
   - actionType: 0
-    actionName: 
-    actionValue: 0
+    actionName: "\u884C\u52D5\u540D2"
+    actionValue: 10
