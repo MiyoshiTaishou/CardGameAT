@@ -9,9 +9,13 @@ public class CharStatus : MonoBehaviour
     [SerializeField,Header("HPスライダー")]
     Slider mySlider;
 
+    [SerializeField, Header("シールドテキスト")]
+    Text shiledText;
+
     int CurrentHP;
     int CurrentMP;
     int DownPoint;
+    int shiledPoint;
 
     KisuuPassive Kisuu;
 
@@ -21,6 +25,8 @@ public class CharStatus : MonoBehaviour
         CurrentHP = myData.MaxHP;
         CurrentMP = myData.MaxMP;
         DownPoint = myData.DownPoint;
+        shiledText.text = shiledPoint.ToString();
+
         Kisuu=GameObject.FindObjectOfType<KisuuPassive>().GetComponent<KisuuPassive>();
     }
 
@@ -33,6 +39,8 @@ public class CharStatus : MonoBehaviour
         }
 
         mySlider.value = (float)CurrentHP / myData.MaxHP;
+
+        shiledText.text = shiledPoint.ToString();
     }
 
     public void Damage(int _damage)
@@ -48,7 +56,26 @@ public class CharStatus : MonoBehaviour
         }
         if (0 < CurrentHP)
         {
-            CurrentHP -= _damage;
+            //シールドがあるならそちらから減らす
+            if(0 < shiledPoint)
+            {
+                shiledPoint -= _damage;
+            }
+            else
+            {
+                CurrentHP-= _damage;
+            }
+
+            //減らした結果シールドが0以下になったならその分をダメージとして与える
+            if (shiledPoint <= 0)
+            {
+                CurrentHP -= Mathf.Abs(shiledPoint);
+            }           
         }
+    }
+
+    public void Shiled(int _shiled)
+    {
+        shiledPoint += _shiled;
     }
 }

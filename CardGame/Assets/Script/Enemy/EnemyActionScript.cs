@@ -27,6 +27,7 @@ public class EnemyActionScript : MonoBehaviour
 
         text.text = enemyActionDataList.type[currentActionIndex].actionName;
         text.text += enemyActionDataList.type[currentActionIndex].actionValue;
+        TextColorChangeTypeAction();
     }
 
     // Update is called once per frame
@@ -34,6 +35,7 @@ public class EnemyActionScript : MonoBehaviour
     {
         if(!turnManager.isPlayerTurn)
         {
+            Debug.Log("エネミーのターンです" + turnManager.isPlayerTurn);
             EnemyAction(); 
         }
     }
@@ -70,8 +72,35 @@ public class EnemyActionScript : MonoBehaviour
         //テキスト変更
         text.text = enemyActionDataList.type[currentActionIndex].actionName;
         text.text += enemyActionDataList.type[currentActionIndex].actionValue;
+        TextColorChangeTypeAction();
 
         //最後に行動を終えたらターンを渡す
+        Debug.Log("エネミーの行動終了");
         turnManager.GoTurnPlayer();
+    }
+
+    void TextColorChangeTypeAction()
+    {
+        //エネミーの行動によって文字の色を変える処理
+        switch (enemyActionDataList.type[currentActionIndex].actionType) 
+        {
+            case ENEMYACTIONTYPE.ATTACK:
+
+                text.color = Color.red;
+
+                break;
+
+            case ENEMYACTIONTYPE.DEF:
+
+                text.color = Color.blue;
+
+                break;
+
+            case ENEMYACTIONTYPE.BUFF:
+
+                text.color = Color.green;
+
+                break;
+        }
     }
 }

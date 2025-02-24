@@ -6,8 +6,8 @@ public class DefCardScript : CardScript
 {
     protected override void OnDropSuccess(GameObject dropTarget)
     {
-        Debug.Log("防御カードの効果発動！対象にダメージを与える");
-        dropTarget.GetComponent<CharStatus>().Damage(this.cardData.cardPoint);
+        Debug.Log("防御カードの効果発動！");
+        dropTarget.GetComponent<CharStatus>().Shiled(this.cardData.cardPoint);
 
         // 一時的なオブジェクトを作成し、SE を再生
         GameObject seObject = new GameObject("TempSE");
