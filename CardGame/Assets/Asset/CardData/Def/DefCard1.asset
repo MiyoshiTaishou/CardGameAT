@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c6680ac3e200204f9d79120d3fb1fa4, type: 3}
+  m_Name: DefCard1
+  m_EditorClassIdentifier: 
+  type: 1
+  CardName: "\u9632\u5FA1\u9B54\u6CD5"
+  cost: 2
+  CardText: "\u3053\u308C\u306F\u9632\u5FA1\u9B54\u6CD5\u3060"
+  cardPoint: 30
+  cardSE: {fileID: 8300000, guid: 08c2957c6c5a79845a067bd325e5f1b0, type: 3}
+  effectPrefab: {fileID: 5768361833539866775, guid: 4e7c4605e4885214390eb1dcdcbdf6fa, type: 3}

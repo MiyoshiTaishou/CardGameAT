@@ -25,6 +25,19 @@ public abstract class CardScript : MonoBehaviour, IBeginDragHandler, IDragHandle
     [SerializeField, Header("カードコスト")]
     protected Text cardCost;
 
+    private void Awake()
+    {
+        // カードの子オブジェクトからTextコンポーネントを探す
+        cardName = transform.Find("CardName")?.GetComponent<Text>();
+        cardText = transform.Find("CardText")?.GetComponent<Text>();
+        cardCost = transform.Find("CardCost")?.GetComponent<Text>();
+
+        if (cardName == null || cardText == null || cardCost == null)
+        {
+            Debug.LogError("カードのUI要素（Text）が見つかりません。Hierarchyを確認してください。");
+        }
+    }
+
     protected virtual void Start()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -93,4 +106,6 @@ public abstract class CardScript : MonoBehaviour, IBeginDragHandler, IDragHandle
         cardText.text = cardData.CardText;
         cardCost.text = cardData.cost.ToString();        
     }
+
+    public CardDataBase GetCardData() {  return cardData; }
 }
