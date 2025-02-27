@@ -11,6 +11,8 @@ public class Turn : SingletonMonoBehaviour<Turn>
     // Start is called before the first frame update
     void Start()
     {
+        //ƒJ[ƒh‚ğ5–ˆˆø‚­
+        cardManager.GenerateCards(5);
         cardManager.GetHandCards();
     }
 

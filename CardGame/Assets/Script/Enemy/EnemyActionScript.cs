@@ -49,11 +49,21 @@ public class EnemyActionScript : MonoBehaviour
         {
             case ENEMYACTIONTYPE.ATTACK:
 
+                //ダメージ与える
                 player.GetComponent<CharStatus>().Damage(data.actionValue);
+
                 break;
             case ENEMYACTIONTYPE.DEF:
+
+                //防御値を増やす
+                GetComponent<CharStatus>().Shiled(data.actionValue);
+
                 break;
             case ENEMYACTIONTYPE.BUFF:
+
+                //喰らうダメージを上げる
+                player.GetComponent<CharStatus>().AddBuff(data.actionValue);
+
                 break;
         }
 
