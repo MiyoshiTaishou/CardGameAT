@@ -16,6 +16,8 @@ public class CharStatus : MonoBehaviour
     int CurrentMP;
     int DownPoint;
     int shiledPoint;
+    int attackBuffPoint;
+    int defBuffPoint;
 
     KisuuPassive Kisuu;
 
@@ -47,7 +49,8 @@ public class CharStatus : MonoBehaviour
     {
         if (Kisuu !=null) 
         {
-            float daada = _damage;
+            //アタックバフ分攻撃力足す
+            float daada = _damage + attackBuffPoint;
             if (Kisuu.Kisuu) 
             {
                 daada *= Kisuu.conf;
@@ -56,8 +59,11 @@ public class CharStatus : MonoBehaviour
         }
         if (0 < CurrentHP)
         {
+            //アタックバフ分攻撃力足す
+            _damage += attackBuffPoint;
+
             //シールドがあるならそちらから減らす
-            if(0 < shiledPoint)
+            if (0 < shiledPoint)
             {
                 shiledPoint -= _damage;
             }
@@ -72,10 +78,21 @@ public class CharStatus : MonoBehaviour
                 CurrentHP -= Mathf.Abs(shiledPoint);
             }           
         }
+
+        Debug.Log("与えたダメージ" + _damage);
+        Debug.Log("現在の攻撃力" + attackBuffPoint);
     }
 
     public void Shiled(int _shiled)
     {
+        //バフ分防御値を上げる
+        _shiled += defBuffPoint;
         shiledPoint += _shiled;
+    }
+
+    public void AddBuff(int _attackbuff)
+    {
+        Debug.Log("バフ" + _attackbuff);
+        attackBuffPoint += _attackbuff;
     }
 }

@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type:
   - actionType: 0
-    actionName: "\u884C\u52D5\u540D"
+    actionName: "\u65AC\u6483"
     actionValue: 5
   - actionType: 1
-    actionName: "\u884C\u52D5\u540D1"
-    actionValue: 0
-  - actionType: 2
-    actionName: "\u884C\u52D5\u540D2"
+    actionName: "\u76FE\u3092\u69CB\u3048\u308B"
+    actionValue: 5
+  - actionType: 0
+    actionName: "\u4E8C\u9023\u65AC"
     actionValue: 10
